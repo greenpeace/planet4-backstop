@@ -5,6 +5,12 @@ set -euo pipefail
 
 cp /app/backstop_data/* /src/backstop_data/ -R
 
-backstop test
+if (backstop test) then
+  testresult=0;
+else
+  testresult=1;
+fi;
 
 cp /src/backstop_data/* /app/backstop_data/ -R
+
+exit $testresult;
