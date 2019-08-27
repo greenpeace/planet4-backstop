@@ -1,0 +1,47 @@
+---
+defaults: &defaults
+  environment:
+    GOOGLE_PROJECT_ID: planet-4-151612
+  docker:
+    - image: greenpeaceinternational/circleci-base:latest
+  working_directory: /home/circleci/app
+
+version: 2
+
+jobs:
+  build-push-tag:
+    <<: *defaults
+    steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - checkout
+      - run: docker-login.sh
+      - run: make build-tag push-tag
+  build-push-branch:
+    <<: *defaults
+    steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - checkout
+      - run: docker-login.sh
+      - run: make build-branch push-branch
+
+workflows:
+  version: 2
+  branch:
+    jobs:
+      - build-push-branch:
+          context: org-global
+          filters:
+            branches:
+              ignore: develop
+
+  tag:
+    jobs:
+      - build-push-tag:
+          context: org-global
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
