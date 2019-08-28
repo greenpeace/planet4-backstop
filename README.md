@@ -70,8 +70,43 @@ Currently the sizes are hardcoded at the file (in this repository) backstop.json
 
 You can add extra view ports there, but they will be used in all Planet4 websites. 
 
-In theory you could add them on your backstop-pages.json and see if it works (untested)
+If you want to add extra viewports to one site only, you can do it via the backstop-pages.json by adding something like that:
+```$xslt
+  "viewports": [
+    {
+      "label": "widescreen",
+      "width": 1366,
+      "height": 768
+    }
+  ]
+```
 
+So, a setup with multiple extra pages and an extra viewport would look like that:
+```$xslt
+{
+  "viewports": [
+    {
+      "label": "widescreen",
+      "width": 1366,
+      "height": 768
+    }
+  ],
+  "scenarios": [
+    {
+      "label": "Explore page",
+      "url": "https://APP_HOSTNAME/APP_HOSTPATH/explore/"
+    },
+    {
+      "label": "About page",
+      "url": "https://APP_HOSTNAME/APP_HOSTPATH/about/"
+    }
+  ]
+}
+
+```
+
+Please be very careful, as any viewport or page you add multiplies the number of screenshot that are taken, and things could get out of hand easily.
+(For example, the default has 1 page X 2 viewports, and takes 2 screenshots. By adding the above 1 viewport and 2 pages, we have in total 3 X 3 = 9 screenshots)
 
 ## Contribute
 
