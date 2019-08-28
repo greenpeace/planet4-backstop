@@ -45,7 +45,7 @@ dev-history:
 
 dev-compare:
 	docker run --rm -it \
-	  -v ${LOCAL_PATH}:/app \
+	  -v ${LOCAL_BACKSTOP_DATA}:/app \
 	  -e APP_HOSTNAME=${APP_HOSTNAME} \
 	  -e APP_HOSTPATH=${APP_HOSTPATH} \
 	  --entrypoint=/src/makecomparison.sh \
