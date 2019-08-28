@@ -4,6 +4,8 @@ BUILD_NAMESPACE ?= greenpeaceinternational
 
 SED_MATCH ?= [^a-zA-Z0-9._-]
 
+LOCAL_BACKSTOP_DATA ?= /mypath/to/data
+
 ifeq ($(CIRCLECI),true)
 # Configure build variables based on CircleCI environment vars
 BUILD_NUM = $(CIRCLE_BUILD_NUM)
@@ -27,7 +29,7 @@ dev:
 
 bash:
 	docker run --rm -it \
-	  -v /mypath/backstop:/app \
+	  -v ${LOCAL_BACKSTOP_DATA}:/app \
 	  -e APP_HOSTNAME=${APP_HOSTNAME} \
 	  -e APP_HOSTPATH=${APP_HOSTPATH} \
 	  --entrypoint=bash \
@@ -35,7 +37,7 @@ bash:
 
 dev-history:
 	docker run --rm -it \
-	  -v /mypath/backstop:/app \
+	  -v ${LOCAL_BACKSTOP_DATA}:/app \
 	  -e APP_HOSTNAME=${APP_HOSTNAME} \
 	  -e APP_HOSTPATH=${APP_HOSTPATH} \
 	  --entrypoint=/src/makehistory.sh \
@@ -43,7 +45,7 @@ dev-history:
 
 dev-compare:
 	docker run --rm -it \
-	  -v /mypath/backstop:/app \
+	  -v ${LOCAL_PATH}:/app \
 	  -e APP_HOSTNAME=${APP_HOSTNAME} \
 	  -e APP_HOSTPATH=${APP_HOSTPATH} \
 	  --entrypoint=/src/makecomparison.sh \
