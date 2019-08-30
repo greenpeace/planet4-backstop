@@ -13,8 +13,6 @@ fi;
 
 cp /src/backstop_data/* /app/backstop_data/ -R
 
-#remove the next if-fi restriction when you want this to run for all p4 sites
-if [ $CIRCLE_PROJECT_REPONAME = 'planet4-koyansync' ]; then
 #Get the git message for this commit
 git_message=$(git --git-dir=/src/repo/.git log --format=%B -n 1 $CIRCLE_SHA1)
 
@@ -34,7 +32,6 @@ if [ $APP_ENVIRONMENT = 'staging' ]; then
     #Parameter 5 is release_finish
     ./trigger_api.sh $CIRCLE_PROJECT_REPONAME $CIRCLE_BRANCH false true false
   fi;
-fi;
 fi;
 
 exit $testresult;
