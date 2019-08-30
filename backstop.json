@@ -12,17 +12,14 @@
       "height": 768
     }
   ],
-  "onBeforeScript": "puppet/onBefore.js",
-  "onReadyScript": "puppet/onReady.js",
   "scenarios": [
     {
-      "label": "Planet4 website",
-      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "label": "Homepage",
       "url": "https://APP_HOSTNAME/APP_HOSTPATH/",
       "referenceUrl": "",
       "readyEvent": "",
       "readySelector": "",
-      "delay": 0,
+      "delay": 1000,
       "hideSelectors": [],
       "removeSelectors": [],
       "hoverSelector": "",
@@ -31,7 +28,7 @@
       "selectors": [],
       "selectorExpansion": true,
       "expect": 0,
-      "misMatchThreshold" : 0.1,
+      "misMatchThreshold" : 0.2,
       "requireSameDimensions": true
     }
   ],
