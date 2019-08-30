@@ -19,7 +19,7 @@
       "referenceUrl": "",
       "readyEvent": "",
       "readySelector": "",
-      "delay": 1000,
+      "delay": 2000,
       "hideSelectors": [],
       "removeSelectors": [],
       "hoverSelector": "",
