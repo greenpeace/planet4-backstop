@@ -19,7 +19,7 @@
       "referenceUrl": "",
       "readyEvent": "",
       "readySelector": "",
-      "delay": 4000,
+      "delay": 5000,
       "hideSelectors": [],
       "removeSelectors": [],
       "hoverSelector": "",
@@ -28,7 +28,7 @@
       "selectors": [],
       "selectorExpansion": true,
       "expect": 0,
-      "misMatchThreshold" : 0.2,
+      "misMatchThreshold" : 0.5,
       "requireSameDimensions": true
     }
   ],
