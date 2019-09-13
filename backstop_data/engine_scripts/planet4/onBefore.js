@@ -52,8 +52,17 @@ module.exports = async function (page, scenario, vp) {
                 if (typeof (element) != 'undefined' && element != null) {
                     console.log('found carousel header block');
                     element.removeAttribute('data-carousel-autoplay');
+                    // Pause carousel header button animation.
+                    element.querySelector('.action-button').style.WebkitAnimationPlayState = "paused";
+                    element.querySelector('.action-button').style.animationPlayState = "paused";
                 }
                 console.log('DOMContentLoaded');
+
+                // Set global dataLayer variable to blacklist tag manager modules.
+                // Blacklist hotjar module.
+                window.dataLayer = [{
+                    'gtm.blacklist': ['hjtc']
+                }];
             });
         }
     }, scenario);
