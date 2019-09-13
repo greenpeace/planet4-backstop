@@ -12,6 +12,8 @@
       "height": 768
     }
   ],
+  "onBeforeScript": "planet4/onBefore.js",
+  "onReadyScript": "planet4/onReady.js",
   "scenarios": [
     {
       "label": "Homepage",
@@ -19,7 +21,7 @@
       "referenceUrl": "",
       "readyEvent": "",
       "readySelector": "",
-      "delay": 5000,
+      "delay": 1000,
       "hideSelectors": [],
       "removeSelectors": [],
       "hoverSelector": "",
