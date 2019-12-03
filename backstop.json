@@ -2,14 +2,29 @@
   "id": "backstop_default",
   "viewports": [
     {
-      "label": "phone",
+      "label": "mobile",
       "width": 320,
       "height": 480
     },
     {
-      "label": "tablet",
-      "width": 1024,
+      "label": "small",
+      "width": 600,
       "height": 768
+    },
+    {
+      "label": "medium",
+      "width": 800,
+      "height": 1024
+    },
+    {
+      "label": "large",
+      "width": 1024,
+      "height": 992
+    },
+    {
+      "label": "xlarge",
+      "width": 1300,
+      "height": 1024
     }
   ],
   "onBeforeScript": "planet4/onBefore.js",
@@ -21,7 +36,7 @@
       "referenceUrl": "",
       "readyEvent": "",
       "readySelector": "",
-      "delay": 1000,
+      "delay": 3000,
       "hideSelectors": [],
       "removeSelectors": [],
       "hoverSelector": "",
@@ -30,7 +45,7 @@
       "selectors": [],
       "selectorExpansion": true,
       "expect": 0,
-      "misMatchThreshold" : 0.5,
+      "misMatchThreshold" : 1,
       "requireSameDimensions": true
     }
   ],

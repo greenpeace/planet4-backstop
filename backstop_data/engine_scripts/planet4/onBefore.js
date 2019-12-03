@@ -14,7 +14,7 @@ module.exports = async function (page, scenario, vp) {
         //    to stop youtube scripts from running.
         page.evaluate(() => {
             console.log('search for iframes');
-            let iframes = document.querySelectorAll('iframe');
+            const iframes = document.querySelectorAll('iframe');
             iframes.forEach((iframe) => {
                 console.log('iframe');
                 if (iframe.src.match(/^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(-nocookie)?(\.com)?\/.+/) !== null) {
@@ -46,9 +46,9 @@ module.exports = async function (page, scenario, vp) {
             document.addEventListener('DOMContentLoaded', () => {
 
                 // Search for carousel header block using the wrapper element id.
-                var element = document.getElementById("carousel-wrapper-header");
+                const element = document.getElementById("carousel-wrapper-header");
 
-                //If carousel header element exists in the DOM, remove data-carousel-autoplay attribute to prevent autoplau.
+                // If carousel header element exists in the DOM, remove data-carousel-autoplay attribute to prevent autoplay.
                 if (typeof (element) != 'undefined' && element != null) {
                     console.log('found carousel header block');
                     element.removeAttribute('data-carousel-autoplay');
