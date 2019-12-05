@@ -10,17 +10,14 @@ module.exports = async function (page, scenario, vp) {
 
         // Run snippet on DOMContentLoaded.
         // 1. Find iframes.
-        // 2. if iframes have youtube as src set sandbox attribute to iframe
-        //    to stop youtube scripts from running.
+        // 2. Disable them by blanking src.
         page.evaluate(() => {
             console.log('search for iframes');
             const iframes = document.querySelectorAll('iframe');
             iframes.forEach((iframe) => {
                 console.log('iframe');
-                if (iframe.src.match(/^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(-nocookie)?(\.com)?\/.+/) !== null) {
-                    iframe.sandbox.add('allow-forms');
-                    console.log(iframe.src);
-                }
+                $(iframe).attr('src', '');
+                console.log(iframe.src);
             });
         });
     });
