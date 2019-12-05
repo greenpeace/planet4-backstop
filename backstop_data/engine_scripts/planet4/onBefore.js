@@ -60,6 +60,10 @@ module.exports = async function (page, scenario, vp) {
                 window.dataLayer = [{
                     'gtm.blacklist': ['hjtc']
                 }];
+
+                // Disable footer transition
+                const footer = document.getElementById("footer");
+                footer.style.transition = "none";
             });
         }
     }, scenario);
