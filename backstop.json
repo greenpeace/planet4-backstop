@@ -32,23 +32,16 @@
   "scenarios": [
     {
       "label": "Homepage",
-      "url": "https://APP_HOSTNAME/APP_HOSTPATH/",
-      "referenceUrl": "",
-      "readyEvent": "",
-      "readySelector": "",
-      "delay": 3000,
-      "hideSelectors": [],
-      "removeSelectors": [],
-      "hoverSelector": "",
-      "clickSelector": "",
-      "postInteractionWait": 0,
-      "selectors": [],
-      "selectorExpansion": true,
-      "expect": 0,
-      "misMatchThreshold" : 1,
-      "requireSameDimensions": true
+      "url": "https://APP_HOSTNAME/APP_HOSTPATH/"
+    },
+    {
+      "label": "Search",
+      "url": "https://APP_HOSTNAME/APP_HOSTPATH/?s="
     }
   ],
+  "delay": 3000,
+  "misMatchThreshold" : 1.5,
+  "requireSameDimensions": true,
   "paths": {
     "bitmaps_reference": "backstop_data/bitmaps_reference",
     "bitmaps_test": "backstop_data/bitmaps_test",
