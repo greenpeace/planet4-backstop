@@ -15,9 +15,9 @@ module.exports = async function (page, scenario, vp) {
             console.log('search for iframes');
             const iframes = document.querySelectorAll('iframe');
             iframes.forEach((iframe) => {
-                console.log('iframe');
+                console.log('before: ' + iframe);
                 $(iframe).attr('src', '');
-                console.log(iframe.src);
+                console.log('after: ' + iframe.src);
             });
         });
     });

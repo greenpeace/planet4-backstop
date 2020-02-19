@@ -14,7 +14,7 @@ module.exports = async (page, scenario, vp) => {
     // 1. Find img tags.
     // 2. Create a Promise which is resolved until all images fire load event.
     await page.evaluate(async () => {
-        const imgs = Array.from(document.querySelectorAll("img"));
+        const imgs = Array.from(document.querySelectorAll('img'));
 
         if (imgs.length > 0) {
             await Promise.all(imgs.map(img => {
@@ -25,5 +25,18 @@ module.exports = async (page, scenario, vp) => {
                 });
             }));
         }
+    });
+
+    // Try to hide iframes on Ready state.
+    await page.evaluate(async () => {
+        const imgs = Array.from(document.querySelectorAll('img'));
+
+        console.log('[Ready] Search for iframes');
+        const iframes = document.querySelectorAll('iframe');
+        iframes.forEach((iframe) => {
+            console.log('[Ready] before: ' + iframe);
+            $(iframe).attr('src', '');
+            console.log('[Ready] after: ' + iframe.src);
+        });
     });
 };
