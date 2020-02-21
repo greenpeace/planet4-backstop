@@ -44,19 +44,19 @@ module.exports = async (page, scenario, vp) => {
     // https://github.com/garris/BackstopJS/issues/57#issuecomment-568509475
     await page.evaluate(async () => {
         await new Promise((resolve, reject) => {
-            var totalHeight = 0;
-            var distance = 200;
-            var timer = setInterval(() => {
-            var scrollHeight = document.body.scrollHeight;
-            window.scrollBy(0, distance);
-            totalHeight += distance;
+            let totalHeight = 0;
+            const distance = 200;
+            let timer = setInterval(() => {
+                var scrollHeight = document.body.scrollHeight;
+                window.scrollBy(0, distance);
+                totalHeight += distance;
 
-            if(totalHeight >= scrollHeight){
-                clearInterval(timer);
-                resolve();
-            }
+                if(totalHeight >= scrollHeight){
+                    clearInterval(timer);
+                    resolve();
+                }
             }, 100);
         });
     });
-    await page.waitFor(1000);
+    await page.waitFor(500);
 };
