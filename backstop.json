@@ -53,6 +53,7 @@
   "report": ["browser"],
   "engine": "puppeteer",
   "engineOptions": {
+    "waitTimeout": 120000,
     "args": ["--no-sandbox"]
   },
   "asyncCaptureLimit": 10,
