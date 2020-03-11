@@ -1,4 +1,4 @@
-FROM backstopjs/backstopjs
+FROM backstopjs/backstopjs:4.4.2
 
 RUN apt-get update & apt-get install -y \
   bash
