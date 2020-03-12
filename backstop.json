@@ -54,6 +54,7 @@
   "engine": "puppeteer",
   "engineOptions": {
     "waitTimeout": 240000,
+    "puppeteerOffscreenCaptureFix": true,
     "args": ["--no-sandbox"]
   },
   "asyncCaptureLimit": 10,
