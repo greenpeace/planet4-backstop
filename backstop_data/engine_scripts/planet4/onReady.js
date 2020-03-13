@@ -34,23 +34,36 @@ module.exports = async (page, scenario, vp) => {
         }
     });
 
-    // Sroll 200px per time, to catch lazy loading
-    // https://github.com/garris/BackstopJS/issues/57#issuecomment-568509475
+    // Disable transitions: Carousel, Footer
     await page.evaluate(async () => {
-        await new Promise((resolve, reject) => {
-            let totalHeight = 0;
-            const distance = 200;
-            let timer = setInterval(() => {
-                var scrollHeight = document.body.scrollHeight;
-                window.scrollBy(0, distance);
-                totalHeight += distance;
 
-                if(totalHeight >= scrollHeight){
-                    clearInterval(timer);
-                    resolve();
-                }
-            }, 100);
-        });
+        // Carousel Header
+        const carousel = document.getElementById('carousel-wrapper-header');
+        if (typeof (carousel) != 'undefined' && carousel != null) {
+            console.log('found carousel header block');
+            carousel.removeAttribute('data-carousel-autoplay');
+            // Pause carousel header button animation.
+            carousel.querySelector('.action-button').style.WebkitAnimationPlayState = 'paused';
+            carousel.querySelector('.action-button').style.animationPlayState = 'paused';
+        }
+
+        // Gallery Carousel
+        const carousels = document.querySelectorAll('.carousel-item');
+        if (typeof (carousels) != 'undefined' && carousels != null) {
+            carousels.forEach((item) => {
+                item.classList.add('active');
+            });
+        }
+
+        // Set global dataLayer variable to blacklist tag manager modules.
+        // Blacklist hotjar module.
+        window.dataLayer = [{
+            'gtm.blacklist': ['hjtc']
+        }];
+
+        // Disable footer transition
+        const footer = document.getElementById('footer');
+        footer.style.transition = 'none';
     });
 
     // Sroll to footer to catch lazy loading/
