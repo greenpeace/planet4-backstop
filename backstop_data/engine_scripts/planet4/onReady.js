@@ -52,5 +52,12 @@ module.exports = async (page, scenario, vp) => {
             }, 100);
         });
     });
+
+    // Sroll to footer to catch lazy loading/
+    await page.evaluate(async () => {
+        const footer = document.querySelector('footer');
+        footer.scrollIntoView();
+    });
+
     await page.waitFor(500);
 };
