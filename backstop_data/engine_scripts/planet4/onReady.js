@@ -18,17 +18,20 @@ module.exports = async (page, scenario, vp) => {
         }
     });
 
-    // Try to hide iframes on Ready state.
+    // Hide iframes on Ready state.
+    // Disable Happy Point iframe
     await page.evaluate(async () => {
-        const imgs = Array.from(document.querySelectorAll('img'));
-
-        console.log('[Ready] Search for iframes');
         const iframes = document.querySelectorAll('iframe');
         iframes.forEach((iframe) => {
             console.log('[Ready] before: ' + iframe);
             $(iframe).attr('src', '');
             console.log('[Ready] after: ' + iframe.src);
         });
+
+        const happy_point = document.getElementById('happy-point');
+        if (typeof (happy_point) != 'undefined' && happy_point != null) {
+            happy_point.style.display = 'none';
+        }
     });
 
     // Sroll 200px per time, to catch lazy loading
