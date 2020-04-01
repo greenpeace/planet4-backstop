@@ -5,6 +5,10 @@ module.exports = async (page, scenario, vp) => {
     // 1. Find img tags.
     // 2. Create a Promise which is resolved until all images fire load event.
     await page.evaluate(async () => {
+        // Trigger all images to load
+        w = new LazyLoad({ elements_selector: 'img', });
+        w.loadAll();
+
         const imgs = Array.from(document.querySelectorAll('img'));
 
         if (imgs.length > 0) {
