@@ -70,10 +70,13 @@ module.exports = async (page, scenario, vp) => {
         footer.style.transition = 'none';
     });
 
-    // Sroll to footer to catch lazy loading/
+    // Sroll to footer to catch lazy loading, except Search
     await page.evaluate(async () => {
-        const footer = document.querySelector('footer');
-        footer.scrollIntoView();
+        const search = document.querySelector('body.search');
+        if (!search) {
+            const footer = document.querySelector('footer');
+            footer.scrollIntoView();
+        }
     });
 
     await page.waitFor(500);
