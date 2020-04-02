@@ -69,7 +69,9 @@ module.exports = async (page, scenario, vp) => {
 
         // Disable footer transition
         const footer = document.getElementById('footer');
-        footer.style.transition = 'none';
+        if (typeof (footer) != 'undefined' && footer != null) {
+            footer.style.transition = 'none';
+        }
     });
 
     // Sroll to footer to catch lazy loading, except Search
