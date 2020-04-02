@@ -77,8 +77,8 @@ module.exports = async (page, scenario, vp) => {
     // Sroll to footer to catch lazy loading, except Search
     await page.evaluate(async () => {
         const search = document.querySelector('body.search');
-        if (!search) {
-            const footer = document.querySelector('footer');
+        const footer = document.querySelector('footer');
+        if (!search && typeof (footer) != 'undefined' && footer != null) {
             footer.scrollIntoView();
         }
     });
