@@ -83,5 +83,5 @@ module.exports = async (page, scenario, vp) => {
         }
     });
 
-    await page.waitFor(500);
+    await page.waitFor(1000);
 };
