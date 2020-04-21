@@ -6,7 +6,7 @@ module.exports = async (page, scenario, vp) => {
     // 2. Create a Promise which is resolved until all images fire load event.
     await page.evaluate(async () => {
         // Trigger all images to load
-        if (typeof LazyLoad === Object) {
+        if (typeof LazyLoad === 'function') {
             w = new LazyLoad({ elements_selector: 'img', });
             w.loadAll();
         }
