@@ -57,8 +57,8 @@
     "puppeteerOffscreenCaptureFix": true,
     "args": ["--no-sandbox"]
   },
-  "asyncCaptureLimit": 10,
-  "asyncCompareLimit": 50,
+  "asyncCaptureLimit": 5,
+  "asyncCompareLimit": 10,
   "debug": false,
   "debugWindow": false
 }
