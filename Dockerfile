@@ -1,6 +1,6 @@
 FROM backstopjs/backstopjs
 
-RUN apt-get update && apt-get install -y bash jq
+RUN apt-get update && apt-get install -y bash jq libxss1
 
 WORKDIR /src
 
