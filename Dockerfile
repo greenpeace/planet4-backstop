@@ -1,11 +1,6 @@
 FROM backstopjs/backstopjs
 
-RUN apt-get update & apt-get install -y \
-  bash
-
-RUN apt-get update && apt-get install apt-file -y && apt-file update && apt-get install vim -y
-
-RUN apt-get install -y jq
+RUN apt-get update && apt-get install -y bash jq
 
 WORKDIR /src
 
