@@ -9,7 +9,7 @@ cp /app/backstop_data/* /src/backstop_data/ -R
 # grep its output for ERROR
 # https://github.com/garris/BackstopJS/issues/1145
 echo "Running backstop"
-backstop test > /tmp/backstop_report.txt
+backstop test >/tmp/backstop_report.txt
 cat /tmp/backstop_report.txt
 
 # If report has a match for "ERROR" keep a fail status
@@ -31,18 +31,9 @@ echo "$git_message"
 echo "-----------"
 echo "The testresult is $testresult"
 
-# if the APP_ENVIRONMENT is staging AND
-# tests failed, trigger the Rollback workflow
-if [ "$APP_ENVIRONMENT" = 'staging' ] && [ $testresult -eq 1 ]; then
-  ./trigger_rollback.sh "$CIRCLE_PROJECT_REPONAME" "$CIRCLE_TAG"
-fi
-
-# if the APP_ENVIRONMENT is staging AND
-# there is a [HOLD] in the commit message,
-# mark job as failed
-if [ "$APP_ENVIRONMENT" = 'staging' ] && [[ "$git_message" == *"[HOLD]"* ]]; then
-  echo "Failing the job since there is a [HOLD] prefix"
-  exit 1
+if [ "$APP_ENVIRONMENT" = 'staging' ] && [ $testresult -eq 0 ] && [[ "$git_message" != *"[HOLD]"* ]]; then
+  # if on staging visual tests pass, unhold the production pipeline.
+  ./promote.sh "$CIRCLE_WORKFLOW_ID"
 fi
 
 exit $testresult
