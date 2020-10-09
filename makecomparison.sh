@@ -31,9 +31,15 @@ echo "$git_message"
 echo "-----------"
 echo "The testresult is $testresult"
 
-# if on staging visual tests pass, unhold the production pipeline.
-if [ "$APP_ENVIRONMENT" = 'staging' ] && [ $testresult -eq 0 ] && [[ "$git_message" != *"[HOLD]"* ]]; then
-  ./promote.sh "$CIRCLE_WORKFLOW_ID"
+# Some extra checks on staging
+if [ "$APP_ENVIRONMENT" = 'staging' ]; then
+  # if visual tests pass, unhold the production pipeline
+  # else notify on Slack
+  if [ $testresult -eq 0 ] && [[ "$git_message" != *"[HOLD]"* ]]; then
+    ./promote.sh "$CIRCLE_WORKFLOW_ID"
+  else
+    ./slack_notify.sh
+  fi
 fi
 
 exit 0
