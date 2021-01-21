@@ -32,7 +32,7 @@
   "scenarios": [
     {
       "label": "Homepage",
-      "url": "https://APP_HOSTNAME/APP_HOSTPATH/",
+      "url": "https://APP_HOSTNAME/APP_HOSTPATH/?q=no-cache",
       "delay": 3000,
       "misMatchThreshold" : 1.5
     },
