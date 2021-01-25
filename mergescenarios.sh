@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [ -f /src/repo/backstop-pages.json ]; then
-  jq 'reduce inputs.scenarios as $s (.; .scenarios += $s)' backstop.json /src/repo/backstop-pages.json > combined.json
-  jq 'reduce inputs.viewports as $s (.; .viewports += $s)' combined.json /src/repo/backstop-pages.json > combined2.json
+local_config=/src/repo/backstop-pages.json
 
-  mv backstop.json backstop-backup.json
-  mv combined2.json backstop.json
+if [ -f $local_config ]; then
+
+  cp backstop.json backstop-backup.json
+
+  node createConfig.js
+
+  git --no-pager diff backstop.json
 fi
