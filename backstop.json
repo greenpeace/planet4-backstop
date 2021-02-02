@@ -34,13 +34,22 @@
       "label": "Homepage",
       "url": "https://APP_HOSTNAME/APP_HOSTPATH/",
       "delay": 3000,
-      "misMatchThreshold" : 1.5
+      "misMatchThreshold" : 1.5,
+      "selectors": [
+        "#header",
+        "#footer"
+      ]
     },
     {
       "label": "Search",
       "url": "https://APP_HOSTNAME/APP_HOSTPATH/?s=",
       "delay": 3000,
-      "misMatchThreshold" : 1.5
+      "misMatchThreshold" : 1.5,
+      "selectors": [
+        ".search-bar",
+        ".sort-filter",
+        "#filter-sidebar-options"
+      ]
     }
   ],
   "paths": {
