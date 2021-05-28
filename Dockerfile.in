@@ -1,0 +1,15 @@
+FROM ${BASE_NAMESPACE}/${BASE_IMAGE}:${BASE_TAG}
+
+# hadolint ignore=DL3008
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends bash jq libxss1 && \
+    rm -rf /tmp/* && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /src
+
+ENTRYPOINT ["/src/entrypoint.sh"]
+
+CMD ["./go.sh"]
+
+COPY . /src

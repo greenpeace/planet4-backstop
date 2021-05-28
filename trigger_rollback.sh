@@ -9,7 +9,7 @@ tag="$2"
 json=$(jq -n \
   --arg VAL "$tag" \
   --arg RELEASE_STAGE "rollback" \
-'{
+  '{
   "tag": $VAL,
   "parameters": {
     "release_stage": $RELEASE_STAGE

@@ -1,4 +1,6 @@
 ---
+version: 2.1
+
 defaults: &defaults
   environment:
     GOOGLE_PROJECT_ID: planet-4-151612
@@ -6,39 +8,64 @@ defaults: &defaults
     - image: greenpeaceinternational/circleci-base:latest
   working_directory: /home/circleci/app
 
-version: 2
-
 jobs:
-  build-push-tag:
+  build:
     <<: *defaults
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
       - checkout
+      - run:
+          name: prepare Dockerfiles
+          command: make prepare
+      - run:
+          name: lint
+          command: make lint
       - run: docker-login.sh
-      - run: make build-tag push-tag
-  build-push-branch:
+      - run:
+          name: build
+          command: make build
+      - run:
+          name: push
+          command: make -j push push-latest
+
+  tag:
     <<: *defaults
     steps:
+      - checkout
       - setup_remote_docker:
           docker_layer_caching: true
-      - checkout
-      - run: docker-login.sh
-      - run: make build-branch push-branch
+      - run:
+          name: prepare git
+          command: |
+            git config user.email "${GIT_USER_EMAIL}"
+            git config user.name "CircleCI Bot"
+            git config merge.ours.driver true
+      - run:
+          name: tag
+          command: |
+            current_version=$(git-current-tag.sh)
+            new_version=$(increment-version.sh $current_version)
+            echo "Tagging to ${new_version}"
+            git tag -a "$new_version" -m "$new_version"
+            git push origin --tags
 
 workflows:
-  version: 2
   branch:
     jobs:
-      - build-push-branch:
+      - build:
           context: org-global
+      - tag:
+          context: org-global
+          requires:
+            - build
           filters:
             branches:
-              ignore: develop
+              only: main
 
   tag:
     jobs:
-      - build-push-tag:
+      - build:
           context: org-global
           filters:
             branches:
