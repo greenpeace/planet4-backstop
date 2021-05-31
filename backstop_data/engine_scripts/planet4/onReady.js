@@ -61,5 +61,5 @@ module.exports = async (page, scenario, vp) => {
         }
     });
 
-    await page.waitFor(1000);
+    await page.waitForTimeout(1000);
 };
