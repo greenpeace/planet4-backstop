@@ -17,6 +17,7 @@ module.exports = async (page, scenario, vp) => {
             happy_point.style.display = 'none';
         }
     });
+    console.log('evaluated iframes');
 
     // Disable transitions: Carousel, Footer
     await page.evaluate(async () => {
@@ -51,6 +52,8 @@ module.exports = async (page, scenario, vp) => {
             footer.style.transition = 'none';
         }
     });
+    console.log('evaluated carousels');
+
 
     // Sroll to footer to catch lazy loading, except Search
     await page.evaluate(async () => {
@@ -60,6 +63,8 @@ module.exports = async (page, scenario, vp) => {
             footer.scrollIntoView();
         }
     });
+    console.log('evaluated scroll to footer');
 
     await page.waitFor(1000);
+    console.log('waited 1 second');
 };
