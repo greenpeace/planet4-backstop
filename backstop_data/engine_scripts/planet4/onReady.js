@@ -1,4 +1,6 @@
+const timeSince = start => (performance ? performance.now() : process.uptime()) - start;
 module.exports = async (page, scenario, vp) => {
+    const start = performance ? performance.now() : process.uptime();
 
     console.log('-------onReady script-------');
 
@@ -17,7 +19,7 @@ module.exports = async (page, scenario, vp) => {
             happy_point.style.display = 'none';
         }
     });
-    console.log('evaluated iframes');
+    console.log('evaluated iframes ' + timeSince(start));
 
     // Disable transitions: Carousel, Footer
     await page.evaluate(async () => {
@@ -52,7 +54,7 @@ module.exports = async (page, scenario, vp) => {
             footer.style.transition = 'none';
         }
     });
-    console.log('evaluated carousels');
+    console.log('evaluated carousels ' + timeSince(start));
 
 
     // Sroll to footer to catch lazy loading, except Search
@@ -63,7 +65,7 @@ module.exports = async (page, scenario, vp) => {
             footer.scrollIntoView();
         }
     });
-    console.log('evaluated scroll to footer');
+    console.log('evaluated scroll to footer ' + timeSince(start));
 
     await page.waitFor(1000);
     console.log('waited 1 second');
