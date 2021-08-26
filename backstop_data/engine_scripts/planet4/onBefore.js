@@ -5,13 +5,11 @@ module.exports = async function (page, scenario, vp) {
     page.on('load', () => {
         console.log('-----Page loading-----');
 
-        // Remove iframes from the page
-        // to avoid happypoint issues
-        page.$$eval('iframe', (frames) => {
-            frames.map((frame) => {
-                console.log('Removing iframe');
-                frame.parentNode.removeChild(frame);
-            });
+        // Remove happypoint from the page
+        // to avoid timeout issues
+        page.$eval('#happy-point', (happypoint) => {
+            console.log('Removing happypoint');
+            happypoint.parentNode.removeChild(happypoint);
         });
     });
 
