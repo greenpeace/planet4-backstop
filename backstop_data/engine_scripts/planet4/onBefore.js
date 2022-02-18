@@ -7,10 +7,12 @@ module.exports = async function (page, scenario, vp) {
 
         // Remove happypoint from the page
         // to avoid timeout issues
-        page.$eval('#happy-point', (happypoint) => {
+        const happy = await page.evaluate(() => {
+            const happy_point = document.getElementById('happy-point');
             console.log('Removing happypoint');
-            happypoint.parentNode.removeChild(happypoint);
+            happy_point.parentNode.removeChild(happy_point);
         });
+        console.log(happy);
     });
 
     page.once('load', () => {
