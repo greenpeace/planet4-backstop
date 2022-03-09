@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -u
 
 ./replacevars.sh
 
@@ -23,17 +22,20 @@ fi
 
 cp /src/backstop_data/* /app/backstop_data/ -R
 
-# Get the git message for this commit
-git_message=$(git --git-dir=/src/repo/.git log --format=%B -n 1 "$CIRCLE_SHA1")
-echo "The git message is:"
-echo "-----------"
-echo "$git_message"
-echo "-----------"
-echo "The testresult is $testresult"
+# Check if in CircleCI environment.
+if [ -n "$CIRCLE_SHA1" ]; then
+  # Get the git message for this commit
+  git_message=$(git --git-dir=/src/repo/.git log --format=%B -n 1 "${CIRCLE_SHA1}")
+  echo "The git message is:"
+  echo "-----------"
+  echo "$git_message"
+  echo "-----------"
+  echo "The testresult is $testresult"
 
-if [ "$APP_ENVIRONMENT" = 'staging' ] && [ $testresult -eq 0 ] && [[ "$git_message" != *"[HOLD]"* ]]; then
-  # if on staging visual tests pass, unhold the production pipeline.
-  ./promote.sh "$CIRCLE_WORKFLOW_ID"
+  if [ "$APP_ENVIRONMENT" = 'staging' ] && [ $testresult -eq 0 ] && [[ "$git_message" != *"[HOLD]"* ]]; then
+    # if on staging visual tests pass, unhold the production pipeline.
+    ./promote.sh "$CIRCLE_WORKFLOW_ID"
+  fi
 fi
 
 exit $testresult

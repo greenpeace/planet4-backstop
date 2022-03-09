@@ -102,7 +102,7 @@ dev:
 	docker run --rm \
 	  -e APP_HOSTNAME=${APP_HOSTNAME} \
 	  -e APP_HOSTPATH=${APP_HOSTPATH} \
-		$(BUILD_IMAGE):build-$(BUILD_NUM)
+		$(BUILD_IMAGE):$(BUILD_NUM)
 
 bash:
 	docker run --rm -it \
@@ -110,7 +110,7 @@ bash:
 	  -e APP_HOSTNAME=${APP_HOSTNAME} \
 	  -e APP_HOSTPATH=${APP_HOSTPATH} \
 	  --entrypoint=bash \
-		$(BUILD_IMAGE):build-$(BUILD_NUM)
+		$(BUILD_IMAGE):$(BUILD_NUM)
 
 dev-history:
 	docker run --rm -it \
@@ -118,7 +118,7 @@ dev-history:
 	  -e APP_HOSTNAME=${APP_HOSTNAME} \
 	  -e APP_HOSTPATH=${APP_HOSTPATH} \
 	  --entrypoint=/src/makehistory.sh \
-		$(BUILD_IMAGE):build-$(BUILD_NUM)
+		$(BUILD_IMAGE):$(BUILD_NUM)
 
 dev-compare:
 	docker run --rm -it \
@@ -126,7 +126,7 @@ dev-compare:
 	  -e APP_HOSTNAME=${APP_HOSTNAME} \
 	  -e APP_HOSTPATH=${APP_HOSTPATH} \
 	  --entrypoint=/src/makecomparison.sh \
-		$(BUILD_IMAGE):build-$(BUILD_NUM)
+		$(BUILD_IMAGE):$(BUILD_NUM)
 
 build:
 ifndef DOCKER

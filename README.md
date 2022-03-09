@@ -25,6 +25,7 @@ The docker image that gets build will then be pushed to the docker hub repositor
 - Define the variables APP_HOSTNAME and APP_HOSTPATH for the website that should be crawled
 example: `export APP_HOSTNAME=www.greenpeace.org` and `export APP_HOSTPATH=international`
 - cd back to the directory of this repository
+- Run `make prepare` to generate Dockerfile.
 - Run `make build` to create a local image.
 - RUN `make dev-history` to create reference screenshots of the homepage of the website
 - Run `make dev-compare` to test against it 
