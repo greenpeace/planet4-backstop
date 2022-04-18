@@ -1,40 +1,45 @@
 {
   "id": "backstop_default",
+  "delay": 4000,
+  "misMatchThreshold": 3,
   "viewports": [
     {
       "label": "mobile",
-      "width": 320,
-      "height": 480
+      "width": 350,
+      "height": 490
     },
     {
       "label": "small",
-      "width": 600,
-      "height": 768
+      "width": 500,
+      "height": 700
     },
     {
       "label": "medium",
-      "width": 800,
-      "height": 1024
+      "width": 700,
+      "height": 980
     },
     {
       "label": "large",
-      "width": 1024,
-      "height": 992
+      "width": 900,
+      "height": 640
     },
     {
       "label": "xlarge",
-      "width": 1300,
-      "height": 1024
+      "width": 1100,
+      "height": 900
+    },
+    {
+      "label": "xxlarge",
+      "width": 1500,
+      "height": 1100
     }
   ],
   "onBeforeScript": "planet4/onBefore.js",
   "onReadyScript": "planet4/onReady.js",
   "scenarios": [
     {
-      "label": "Homepage",
       "url": "https://APP_HOSTNAME/APP_HOSTPATH/",
-      "delay": 4000,
-      "misMatchThreshold" : 1.5,
+      "label": "Home",
       "selectors": [
         "#header",
         "#footer"
@@ -43,8 +48,6 @@
     {
       "label": "Search",
       "url": "https://APP_HOSTNAME/APP_HOSTPATH/?s=",
-      "delay": 4000,
-      "misMatchThreshold" : 1.5,
       "selectors": [
         ".search-bar",
         ".sort-filter",
@@ -59,12 +62,17 @@
     "html_report": "backstop_data/html_report",
     "ci_report": "backstop_data/ci_report"
   },
-  "report": ["browser", "CI"],
+  "report": [
+    "browser",
+    "CI"
+  ],
   "engine": "puppeteer",
   "engineOptions": {
     "waitTimeout": 240000,
     "puppeteerOffscreenCaptureFix": true,
-    "args": ["--no-sandbox"]
+    "args": [
+      "--no-sandbox"
+    ]
   },
   "asyncCaptureLimit": 5,
   "asyncCompareLimit": 10,
