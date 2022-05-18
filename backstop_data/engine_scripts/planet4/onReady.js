@@ -8,7 +8,7 @@ module.exports = async (page, scenario, vp) => {
         const iframes = document.querySelectorAll('iframe');
         iframes.forEach((iframe) => {
             console.log('[Ready] before: ' + iframe);
-            $(iframe).attr('src', '');
+            iframe.setAttribute('src', '');
             console.log('[Ready] after: ' + iframe.src);
         });
 
