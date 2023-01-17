@@ -5,7 +5,8 @@
 ## Introduction
 
 ### What is it?
-This repository contains an implementation of BackstoJS and the scripts that create a docker container which is used for visual regression testing in Planet4 websites
+
+This repository contains an implementation of BackstopJS and the scripts that create a Docker container which is used for visual regression testing in Planet4 websites.
 
 
 ## How to build it
