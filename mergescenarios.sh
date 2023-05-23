@@ -9,5 +9,7 @@ if [ -f $local_config ]; then
 
   node createConfig.js
 
+  git config --global --add safe.directory /src
+
   git --no-pager diff backstop.json
 fi
