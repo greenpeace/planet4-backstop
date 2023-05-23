@@ -7,4 +7,4 @@ IMAGE_NAME=planet4-backstop
 # Upstream image
 BASE_IMAGE=backstopjs
 BASE_NAMESPACE=backstopjs
-BASE_TAG=5.3.2
+BASE_TAG=6.2.1
