@@ -41,6 +41,9 @@
     {
       "url": "https://APP_HOSTNAME/APP_HOSTPATH/",
       "label": "Home",
+      "removeSelectors": [
+        ".page-content"
+      ],
       "selectors": [
         "#header",
         "#footer"
@@ -49,10 +52,15 @@
     {
       "label": "Search",
       "url": "https://APP_HOSTNAME/APP_HOSTPATH/?s=",
+      "removeSelectors": [
+        "#header",
+        "#footer",
+        ".filter-sidebar",
+        ".multiple-search-result"
+      ],
       "selectors": [
         ".search-bar",
-        ".sort-filter",
-        "#filter-sidebar-options"
+        ".sort-filter"
       ]
     }
   ],
