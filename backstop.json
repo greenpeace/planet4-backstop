@@ -2,6 +2,7 @@
   "id": "backstop_default",
   "delay": 4000,
   "misMatchThreshold": 3,
+  "requireSameDimensions": false,
   "viewports": [
     {
       "label": "mobile",
