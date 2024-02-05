@@ -12,7 +12,7 @@ backstop test >/tmp/backstop_report.txt
 cat /tmp/backstop_report.txt
 
 # If report has a match for "ERROR" keep a fail status
-if [ "$(grep -ci "ERROR" /tmp/backstop_report.txt)" == 0 ]; then
+if [ "$(grep -c "ERROR" /tmp/backstop_report.txt)" == 0 ]; then
   echo "✅ All passed"
   testresult=0
 else
